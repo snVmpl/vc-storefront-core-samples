@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using Newtonsoft.Json;
 using VirtoCommerce.Storefront.Model.Common;
+using VirtoCommerce.Storefront.Model.CustomerReviews;
 using VirtoCommerce.Storefront.Model.Marketing;
 using VirtoCommerce.Storefront.Model.Subscriptions;
 
@@ -250,6 +251,8 @@ namespace VirtoCommerce.Storefront.Model.Catalog
         public Money PriceMin => (Variations ?? Enumerable.Empty<Product>()).Concat(new[] { this }).Where(x => x.Price != null).Select(x => x.Price?.ActualPrice).Min();
         [JsonIgnore]
         public bool PriceVaries => PriceMax != PriceMin;
+
+        public IMutablePagedList<CustomerReview> CustomerReviews { get; set; }
 
         /// <summary>
         /// Product prices for other currencies

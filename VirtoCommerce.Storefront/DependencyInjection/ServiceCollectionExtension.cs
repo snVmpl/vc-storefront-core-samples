@@ -17,6 +17,7 @@ using VirtoCommerce.Storefront.AutoRestClients.CatalogModuleApi;
 using VirtoCommerce.Storefront.AutoRestClients.ContentModuleApi;
 using VirtoCommerce.Storefront.AutoRestClients.CoreModuleApi;
 using VirtoCommerce.Storefront.AutoRestClients.CustomerModuleApi;
+using VirtoCommerce.Storefront.AutoRestClients.CustomerReviewsModuleModuleApi;
 using VirtoCommerce.Storefront.AutoRestClients.InventoryModuleApi;
 using VirtoCommerce.Storefront.AutoRestClients.MarketingModuleApi;
 using VirtoCommerce.Storefront.AutoRestClients.OrdersModuleApi;
@@ -117,6 +118,8 @@ namespace VirtoCommerce.Storefront.DependencyInjection
             services.AddSingleton<INotifications>(sp => new Notifications(sp.GetRequiredService<VirtoCommercePlatformRESTAPIdocumentation>()));
             services.AddAutoRestClient((credentials, httpClient, disposeHttpClient, baseUri) => new VirtoCommerceCustomerRESTAPIdocumentation(credentials, httpClient, disposeHttpClient) { BaseUri = baseUri });
             services.AddSingleton<ICustomerModule>(sp => new CustomerModule(sp.GetRequiredService<VirtoCommerceCustomerRESTAPIdocumentation>()));
+            services.AddAutoRestClient((credentials, httpClient, disposeHttpClient, baseUri) => new CustomerReviewsModuleRESTAPIdocumentation(credentials, httpClient, disposeHttpClient) { BaseUri = baseUri });
+            services.AddSingleton<ICustomerReviewsModule>(sp => new CustomerReviewsModule(sp.GetRequiredService<CustomerReviewsModuleRESTAPIdocumentation>()));
             services.AddAutoRestClient((credentials, httpClient, disposeHttpClient, baseUri) => new VirtoCommerceOrdersRESTAPIdocumentation(credentials, httpClient, disposeHttpClient) { BaseUri = baseUri });
             services.AddSingleton<IOrderModule>(sp => new OrderModule(sp.GetRequiredService<VirtoCommerceOrdersRESTAPIdocumentation>()));
             services.AddAutoRestClient((credentials, httpClient, disposeHttpClient, baseUri) => new VirtoCommerceSubscriptionRESTAPIdocumentation(credentials, httpClient, disposeHttpClient) { BaseUri = baseUri });
