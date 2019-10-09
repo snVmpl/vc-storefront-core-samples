@@ -259,6 +259,8 @@ namespace VirtoCommerce.Storefront.Model.Catalog
         /// </summary>
         public IList<ProductPrice> Prices { get; set; }
 
+        public double? Rating { get; set; }
+
         /// <summary>
         /// Inventory for default fulfillment center
         /// </summary>

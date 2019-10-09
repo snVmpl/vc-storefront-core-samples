@@ -370,6 +370,7 @@ namespace VirtoCommerce.Storefront.Domain
                     };
                     return _customerReviewService.SearchReview(criteria);
                 }, 1, CustomerReviewSearchCriteria.DefaulePageSize);
+                product.Rating = _customerReviewService.GetProductRating(product.Id);
             }
             return Task.CompletedTask;
         }

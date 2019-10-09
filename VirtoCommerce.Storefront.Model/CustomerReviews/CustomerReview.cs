@@ -7,6 +7,8 @@ namespace VirtoCommerce.Storefront.Model.CustomerReviews
     {
         public string AuthorNickname { get; set; }
         public string Content { get; set; }
+        public string Pros { get; set; }
+        public string Cons { get; set; }
         public bool? IsActive { get; set; }
         public string ProductId { get; set; }
 
@@ -14,5 +16,7 @@ namespace VirtoCommerce.Storefront.Model.CustomerReviews
         public DateTime? ModifiedDate { get; set; }
         public string CreatedBy { get; set; }
         public string ModifiedBy { get; set; }
+        public int Rating { get; set; }
+        public int? RatingNumber { get; set; }
     }
 }

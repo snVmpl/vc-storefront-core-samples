@@ -11,12 +11,37 @@ namespace VirtoCommerce.Storefront.Domain.CustomerReview
             {
                 AuthorNickname = reviewDto.AuthorNickname,
                 Content = reviewDto.Content,
+                Pros = reviewDto.Pros,
+                Cons = reviewDto.Cons,
                 CreatedBy = reviewDto.CreatedBy,
                 CreatedDate = reviewDto.CreatedDate,
                 IsActive = reviewDto.IsActive,
                 ModifiedBy = reviewDto.ModifiedBy,
                 ModifiedDate = reviewDto.ModifiedDate,
                 ProductId = reviewDto.ProductId,
+                RatingNumber = reviewDto.RatingNumber,
+                Id = reviewDto.Id
+            };
+
+            return result;
+        }
+
+        public static reviewDto.CustomerReview ToCustomerReviewDto(this reviewEntity.CustomerReview reviewDto)
+        {
+            var result = new reviewDto.CustomerReview
+            {
+                AuthorNickname = reviewDto.AuthorNickname,
+                Content = reviewDto.Content,
+                Pros = reviewDto.Pros,
+                Cons = reviewDto.Cons,
+                CreatedBy = reviewDto.CreatedBy,
+                CreatedDate = reviewDto.CreatedDate,
+                IsActive = reviewDto.IsActive,
+                ModifiedBy = reviewDto.ModifiedBy,
+                ModifiedDate = reviewDto.ModifiedDate,
+                ProductId = reviewDto.ProductId,
+                RatingNumber = reviewDto.RatingNumber,
+                Rating = reviewDto.Rating.ToString(),
                 Id = reviewDto.Id
             };
 

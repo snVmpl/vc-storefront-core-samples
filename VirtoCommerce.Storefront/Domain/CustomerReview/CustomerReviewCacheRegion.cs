@@ -8,24 +8,25 @@ namespace VirtoCommerce.Storefront.Domain.CustomerReview
 {
     public class CustomerReviewCacheRegion : CancellableCacheRegion<CustomerReviewCacheRegion>
     {
-        private static readonly ConcurrentDictionary<string, CancellationTokenSource> _memberRegionTokenLookup =
+        private static readonly ConcurrentDictionary<string, CancellationTokenSource> _reviewRegionTokenLookup =
           new ConcurrentDictionary<string, CancellationTokenSource>();
 
-        public static IChangeToken CreateChangeToken(string memberId)
+        public static IChangeToken CreateChangeToken(string productId)
         {
-            if (memberId == null)
+            if (productId == null)
             {
-                throw new ArgumentNullException(nameof(memberId));
+                throw new ArgumentNullException(nameof(productId));
             }
-            var cancellationTokenSource = _memberRegionTokenLookup.GetOrAdd(memberId, new CancellationTokenSource());
+            var cancellationTokenSource = _reviewRegionTokenLookup.GetOrAdd(productId, new CancellationTokenSource());
             return new CompositeChangeToken(new[] { CreateChangeToken(), new CancellationChangeToken(cancellationTokenSource.Token) });
         }
 
-        public static void ExpireMember(string memberId)
+        public static void ExpireReview(string productId)
         {
-            if (!string.IsNullOrEmpty(memberId) && _memberRegionTokenLookup.TryRemove(memberId, out var token))
+            if (!string.IsNullOrEmpty(productId) && _reviewRegionTokenLookup.TryRemove(productId, out var token))
             {
                 token.Cancel();
+                token.Dispose();
             }
         }
     }
